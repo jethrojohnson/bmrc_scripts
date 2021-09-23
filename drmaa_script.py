@@ -23,10 +23,12 @@ def main():
     shell_script.write("#!/bin/bash\n\n"
                        "printf 'python version is:\\n' > {outf}\n"
                        "which python >> {outf}\n"
+                       "printf 'R version is:\\n' >> {outf}\n"
+                       "which R >> {outf}\n\n"
                        "printf 'bash environment is:\\n': >> {outf}\n"
-                       # "env >> {outf}".format(outf=outfile)) # py2
-                        "env >> {outf}".format(outf=outfile))
+                       "env >> {outf}".format(outf=outfile))
     shell_script.close()
+
     # os.chmod(shell_script.name, 0555) # python 2
     os.chmod(shell_script.name, 0o555)
 
@@ -40,14 +42,13 @@ def main():
     jt = s.createJobTemplate()
 
     # SET for UGE on BMRC cluster
-    # FAILS with '-V' but '-v', works
-    # jt.nativeSpecification = "-V"
-    jt.nativeSpecification = "-cwd -q short.qc -pe shmem 2 -v PATH={}".format(os.environ['PATH'])
+    # FAILS with '-V' but '-v', works... neither used as jobEnvironment set instead
+    jt.nativeSpecification = "-cwd -q short.qc -pe shmem 2" # -v PATH={}".format(os.environ['PATH'])
 
     jt.remoteCommand = os.path.join(os.getcwd(), shell_script.name)
     jt.jobName = 'HelloCluster'
     # jt.errorPath = shell_script + '.error'
-    # jt.jobEnvironment = os.environ
+    jt.jobEnvironment = os.environ
     jt.joinFiles=False
 
 
@@ -59,7 +60,7 @@ def main():
     # clean up
     s.deleteJobTemplate(jt)
     s.exit()
-    os.unlink(shell_script.name)
+    # os.unlink(shell_script.name) # For some reason this also deletes ClusterEnvironment.txt
 
 if __name__=='__main__':
     main()
