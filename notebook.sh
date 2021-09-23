@@ -3,7 +3,7 @@
 #$ -q short.qc
 #$ -pe shmem 2
 #$ -N notebook
-#$ -o notebook
+#$ -o jupyter_session
 
 PORT=$(shuf -i10000-11999 -n1)
 echo "executing jupyter on http://$(hostname):$PORT"
