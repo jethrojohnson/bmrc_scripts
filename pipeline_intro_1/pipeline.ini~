@@ -1,0 +1,59 @@
+########################################################################
+#
+#
+# pipeline_hello_world.py configuration file
+#
+# This pipeline.ini file contains parameters to configure pipeline run
+#
+# Add pipeline specific options into separate sections
+#
+########################################################################
+## general options
+[general]
+
+database=csvdb
+
+# essential cluster options
+mem=1gb
+
+walltime=04:00:00
+
+copy_environment=1
+
+########################################################################
+#
+## trimmomatic configuration options
+#
+########################################################################
+[trim]
+
+tool_location=/data/weinstocklab/local/Trimmomatic-0.32/trimmomatic-0.32.jar
+
+min_length=100
+
+forward=20
+
+reverse=17
+
+filter_options=
+
+trim_options=
+
+########################################################################
+#
+## flash assembly options
+#
+########################################################################
+[assembly]
+
+tool_location=/data/weinstocklab/local/bin/flash
+
+min_overlap=30
+
+max_overlap=150
+
+mismatch=0.1
+
+num_threads=1
+
+options=
