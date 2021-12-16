@@ -1,25 +1,19 @@
 ########################################################################
 #
 #
-# pipeline_hello_world2.py configuration file
+# pipeline_intro_1.py configuration file
 #
-# This pipeline.ini file contains parameters to configure pipeline run
+# This pipelineyml file contains parameters to configure pipeline run
 #
 # Add pipeline specific options into separate sections
 #
 ########################################################################
 ## general options these are essential options that must be specified 
 ## for every pipeline run.
-[general]
+general:
 
-database=csvdb
+    database: csvdb
 
-# essential cluster options
-mem=1gb
-
-walltime=04:00:00
-
-copy_environment=1
 
 ########################################################################
 #

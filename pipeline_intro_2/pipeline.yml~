@@ -1,0 +1,52 @@
+########################################################################
+#
+#
+# pipeline_intro_2.py configuration file
+#
+# This pipeline.yml file contains parameters to configure pipeline run
+#
+# Add pipeline specific options into separate sections
+#
+########################################################################
+## general options
+
+database: csvdb
+
+
+########################################################################
+#
+## trimmomatic configuration options
+#
+########################################################################
+trim:
+
+    tool_location: /gpfs3/well/johnson/shared/apps/apps/Trimmomatic-0.36/trimmomatic-0.36.jar
+
+    min_length: 100
+
+    forward: 20
+
+    reverse: 17
+
+    filter_options:
+
+    trim_options:
+
+########################################################################
+#
+## flash assembly options
+#
+########################################################################
+assembly:
+
+    tool_location: /gpfs3/well/johnson/shared/apps/apps/FLASH-1.2.11/flash
+
+    min_overlap: 30
+
+    max_overlap: 150
+
+    mismatch: 0.1
+
+    num_threads: 1
+
+    options:
